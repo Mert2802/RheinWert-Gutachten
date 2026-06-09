@@ -23,8 +23,8 @@ interface KontaktProps {
 }
 
 const CONTACT_EMAIL = 'info@rheinwert-gutachten.de';
-const FORM_SUBMIT_ENDPOINT = `https://formsubmit.co/${CONTACT_EMAIL}`;
-const FORM_SUBMIT_SUBJECT = 'Neue Anfrage ueber RheinWertGutachten';
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mkoabvjp';
+const FORM_SUBJECT = 'Neue Anfrage ueber RheinWertGutachten';
 
 const reasonLabels: Record<string, string> = {
   unfallgutachten: 'Unfallgutachten (Haftpflicht)',
@@ -221,12 +221,10 @@ export const Kontakt: React.FC<KontaktProps> = ({ onNavigate }) => {
               </div>
             </div>
           ) : (
-            <form action={FORM_SUBMIT_ENDPOINT} method="POST" className="space-y-6">
-              <input type="hidden" name="_subject" value={FORM_SUBMIT_SUBJECT} />
-              <input type="hidden" name="_template" value="table" />
+            <form action={FORMSPREE_ENDPOINT} method="POST" className="space-y-6">
+              <input type="hidden" name="_subject" value={FORM_SUBJECT} />
               <input type="hidden" name="_replyto" value={form.email} />
               <input type="hidden" name="_next" value={thankYouUrl} />
-              <input type="hidden" name="_url" value={thankYouUrl} />
               <input type="hidden" name="Anliegen" value={reasonLabels[form.reason] ?? form.reason} />
               <input type="hidden" name="Gewuenschter Kontaktweg" value={preferredContactLabels[form.preferredContact]} />
               <h3 className="font-display font-bold text-xl text-navy-950 border-b border-slate-100 pb-3">

@@ -57,8 +57,8 @@ Wenn Sie uns per Kontaktformular, Telefon, E-Mail oder WhatsApp kontaktieren, we
 4. Rechtsgrundlage
 Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage mit der Erfuellung eines Vertrags zusammenhaengt oder zur Durchfuehrung vorvertraglicher Massnahmen erforderlich ist. In allen uebrigen Faellen erfolgt die Verarbeitung auf Grundlage unseres berechtigten Interesses an der effektiven Bearbeitung der an uns gerichteten Anfragen.
 
-5. Kontaktformular ueber FormSubmit
-Fuer die technische Uebermittlung von Kontaktformular-Anfragen nutzen wir FormSubmit (Devro LABS). Die im Formular eingegebenen Daten werden an FormSubmit uebermittelt und von dort per E-Mail an uns weitergeleitet. Weitere Informationen zur Verarbeitung durch FormSubmit finden Sie in den Datenschutzinformationen des Anbieters.
+5. Kontaktformular ueber Formspree
+Fuer die technische Uebermittlung von Kontaktformular-Anfragen nutzen wir Formspree. Die im Formular eingegebenen Daten werden an Formspree uebermittelt und von dort per E-Mail an uns weitergeleitet. Weitere Informationen zur Verarbeitung durch Formspree finden Sie in den Datenschutzinformationen des Anbieters.
 
 6. WhatsApp-Kommunikation
 Fuer den schnellen Support nutzen wir WhatsApp. Bitte beachten Sie, dass bei der Nutzung von WhatsApp personenbezogene Daten an WhatsApp bzw. Meta uebermittelt werden koennen.
