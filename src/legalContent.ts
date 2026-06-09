@@ -57,19 +57,22 @@ Wenn Sie uns per Kontaktformular, Telefon, E-Mail oder WhatsApp kontaktieren, we
 4. Rechtsgrundlage
 Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage mit der Erfuellung eines Vertrags zusammenhaengt oder zur Durchfuehrung vorvertraglicher Massnahmen erforderlich ist. In allen uebrigen Faellen erfolgt die Verarbeitung auf Grundlage unseres berechtigten Interesses an der effektiven Bearbeitung der an uns gerichteten Anfragen.
 
-5. WhatsApp-Kommunikation
+5. Kontaktformular ueber FormSubmit
+Fuer die technische Uebermittlung von Kontaktformular-Anfragen nutzen wir FormSubmit (Devro LABS). Die im Formular eingegebenen Daten werden an FormSubmit uebermittelt und von dort per E-Mail an uns weitergeleitet. Weitere Informationen zur Verarbeitung durch FormSubmit finden Sie in den Datenschutzinformationen des Anbieters.
+
+6. WhatsApp-Kommunikation
 Fuer den schnellen Support nutzen wir WhatsApp. Bitte beachten Sie, dass bei der Nutzung von WhatsApp personenbezogene Daten an WhatsApp bzw. Meta uebermittelt werden koennen.
 
-6. Cookies und lokale Speicherung
+7. Cookies und lokale Speicherung
 Diese Website nutzt technisch notwendige lokale Speicherungen, um die Cookie-Auswahl zu merken und den Betrieb einzelner Funktionen sicherzustellen. Optionale Tracking- oder Marketing-Cookies werden nicht geladen.
 
-7. Hosting
+8. Hosting
 Diese Website wird ueber GitHub Pages bereitgestellt. Beim Aufruf der Website koennen technische Zugriffsdaten wie IP-Adresse, Browsertyp, Betriebssystem und Zeitpunkt des Seitenaufrufs verarbeitet werden.
 
-8. Ihre Rechte
+9. Ihre Rechte
 Sie haben jederzeit das Recht auf Auskunft, Berichtigung, Loeschung, Einschraenkung der Verarbeitung, Datenuebertragbarkeit sowie Widerspruch gegen die Verarbeitung Ihrer personenbezogenen Daten.
 
-9. Beschwerderecht
+10. Beschwerderecht
 Sie haben das Recht, sich bei einer Datenschutzaufsichtsbehoerde ueber die Verarbeitung Ihrer personenbezogenen Daten zu beschweren.`;
 
 export const getDefaultLegalContent = (): LegalContent => ({
