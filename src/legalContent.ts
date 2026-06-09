@@ -60,13 +60,16 @@ Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO, sofern Ih
 5. WhatsApp-Kommunikation
 Fuer den schnellen Support nutzen wir WhatsApp. Bitte beachten Sie, dass bei der Nutzung von WhatsApp personenbezogene Daten an WhatsApp bzw. Meta uebermittelt werden koennen.
 
-6. Hosting
+6. Cookies und lokale Speicherung
+Diese Website nutzt technisch notwendige lokale Speicherungen, um die Cookie-Auswahl zu merken und den Betrieb einzelner Funktionen sicherzustellen. Optionale Tracking- oder Marketing-Cookies werden nicht geladen.
+
+7. Hosting
 Diese Website wird ueber GitHub Pages bereitgestellt. Beim Aufruf der Website koennen technische Zugriffsdaten wie IP-Adresse, Browsertyp, Betriebssystem und Zeitpunkt des Seitenaufrufs verarbeitet werden.
 
-7. Ihre Rechte
+8. Ihre Rechte
 Sie haben jederzeit das Recht auf Auskunft, Berichtigung, Loeschung, Einschraenkung der Verarbeitung, Datenuebertragbarkeit sowie Widerspruch gegen die Verarbeitung Ihrer personenbezogenen Daten.
 
-8. Beschwerderecht
+9. Beschwerderecht
 Sie haben das Recht, sich bei einer Datenschutzaufsichtsbehoerde ueber die Verarbeitung Ihrer personenbezogenen Daten zu beschweren.`;
 
 export const getDefaultLegalContent = (): LegalContent => ({

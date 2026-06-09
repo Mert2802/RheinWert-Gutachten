@@ -7,6 +7,7 @@ import React, { useState, useEffect } from 'react';
 import { Page } from '../types';
 import { Logo } from './Logo';
 import { VirtualAssistant } from './VirtualAssistant';
+import { CookieConsent } from './CookieConsent';
 import { 
   Phone, 
   MessageCircle, 
@@ -314,6 +315,8 @@ export const Layout: React.FC<LayoutProps> = ({
 
       {/* Floating Interactive Virtual Assistant */}
       {!mobileMenuOpen && <VirtualAssistant onNavigate={setCurrentPage} />}
+
+      {!mobileMenuOpen && <CookieConsent onPrivacyClick={() => handlePageSelect(Page.DATENSCHUTZ)} />}
 
       {/* Professional Local Footer Section */}
       <footer className="bg-navy-950 text-slate-300 border-t border-navy-900 font-display">
