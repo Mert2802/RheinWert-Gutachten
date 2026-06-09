@@ -15,14 +15,42 @@ import { Einsatzgebiet } from './components/Einsatzgebiet';
 import { UeberMich } from './components/UeberMich';
 import { Kontakt } from './components/Kontakt';
 import { Legal } from './components/Legal';
+import { Admin } from './components/Admin';
+
+const isAdminLocation = () => (
+  window.location.pathname.replace(/\/$/, '').endsWith('/admin') ||
+  window.location.hash === '#/admin'
+);
+
+const getSiteRootPath = () => {
+  const path = window.location.pathname;
+  const normalize = (value: string) => value.endsWith('/') ? value : `${value}/`;
+  if (path.endsWith('/admin')) {
+    return normalize(path.slice(0, -'/admin'.length) || '/');
+  }
+  if (path.endsWith('/admin/')) {
+    return normalize(path.slice(0, -'/admin/'.length) || '/');
+  }
+  return normalize(path || '/');
+};
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>(Page.HOME);
+  const [isAdminRoute, setIsAdminRoute] = useState(() => isAdminLocation());
 
   useEffect(() => {
+    if (isAdminRoute) {
+      return;
+    }
+
     const handleHashSync = () => {
       const hash = window.location.hash;
       if (hash) {
+        if (hash === '#/admin') {
+          setIsAdminRoute(true);
+          return;
+        }
+
         const pageRoute = hash.replace('#/', '') as Page;
         if (Object.values(Page).includes(pageRoute)) {
           setCurrentPage(pageRoute);
@@ -39,7 +67,7 @@ export default function App() {
     // Setup listener
     window.addEventListener('hashchange', handleHashSync);
     return () => window.removeEventListener('hashchange', handleHashSync);
-  }, []);
+  }, [isAdminRoute]);
 
   const handleNavigate = (page: Page) => {
     setCurrentPage(page);
@@ -71,6 +99,18 @@ export default function App() {
         return <Home onNavigate={handleNavigate} />;
     }
   };
+
+  const handleExitAdmin = () => {
+    const rootPath = getSiteRootPath();
+    window.history.pushState(null, '', `${rootPath}#/home`);
+    setIsAdminRoute(false);
+    setCurrentPage(Page.HOME);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  if (isAdminRoute) {
+    return <Admin onExit={handleExitAdmin} />;
+  }
 
   return (
     <Layout currentPage={currentPage} setCurrentPage={handleNavigate}>

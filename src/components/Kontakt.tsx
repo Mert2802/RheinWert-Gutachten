@@ -22,6 +22,21 @@ interface KontaktProps {
   onNavigate: (page: Page) => void;
 }
 
+const CONTACT_EMAIL = 'info@rheinwert-gutachten.de';
+
+const reasonLabels: Record<string, string> = {
+  unfallgutachten: 'Unfallgutachten (Haftpflicht)',
+  schadengutachten: 'Schadengutachten (Kasko)',
+  fahrzeugbewertung: 'Fahrzeugbewertung / Wertgutachten',
+  sonstiges: 'Sonstige Anfrage / Erstberatung',
+};
+
+const preferredContactLabels: Record<ContactFormInput['preferredContact'], string> = {
+  phone: 'Anruf',
+  whatsapp: 'WhatsApp',
+  email: 'E-Mail',
+};
+
 export const Kontakt: React.FC<KontaktProps> = ({ onNavigate }) => {
   const [form, setForm] = useState<ContactFormInput>({
     name: '',
@@ -70,7 +85,19 @@ export const Kontakt: React.FC<KontaktProps> = ({ onNavigate }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate real submission
+    const subject = `Anfrage RheinWertGutachten - ${reasonLabels[form.reason] ?? form.reason}`;
+    const body = [
+      `Name: ${form.name}`,
+      `Telefon: ${form.phone}`,
+      `E-Mail: ${form.email || '-'}`,
+      `Anliegen: ${reasonLabels[form.reason] ?? form.reason}`,
+      `Gewuenschter Kontaktweg: ${preferredContactLabels[form.preferredContact]}`,
+      '',
+      'Nachricht / Schadensbeschreibung:',
+      form.message || '-',
+    ].join('\n');
+
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     setSubmitted(true);
     // Reset form after submission
     setForm({
@@ -205,7 +232,7 @@ export const Kontakt: React.FC<KontaktProps> = ({ onNavigate }) => {
               </div>
               <h3 className="font-display font-extrabold text-2xl text-navy-950">Vielen Dank für Ihre Anfrage!</h3>
               <p className="text-slate-500 text-sm font-sans max-w-sm mx-auto">
-                Ihre Nachricht wurde erfolgreich übermittelt. Can Linker wird sich schnellstmöglich persönlich per von Ihnen gewähltem Kontaktweg bei Ihnen melden.
+                Ihr E-Mail-Programm wurde mit der Anfrage an info@rheinwert-gutachten.de vorbereitet. Bitte senden Sie die E-Mail dort ab, damit die Anfrage ankommt.
               </p>
               <div className="pt-4">
                 <button 

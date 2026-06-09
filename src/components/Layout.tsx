@@ -441,7 +441,7 @@ export const Layout: React.FC<LayoutProps> = ({
         </div>
 
         {/* Lower Legal Line */}
-        <div className="border-t border-navy-900 bg-navy-950 px-4 py-6 md:py-8">
+        <div className="border-t border-navy-900 bg-navy-950 px-4 pt-6 pb-28 md:pt-8 lg:py-8">
           <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
             <div>
               &copy; {new Date().getFullYear()} RheinWertGutachten. Alle Rechte vorbehalten. Inhaber Can Linker.
@@ -485,13 +485,13 @@ export const Layout: React.FC<LayoutProps> = ({
           <MessageCircle className="w-5 h-5 text-green-600 mb-0.5 fill-current" />
           <span>WhatsApp Chat</span>
         </a>
-        <button 
-          onClick={() => handlePageSelect(Page.KONTAKT)} 
+        <a 
+          href="mailto:info@rheinwert-gutachten.de?subject=Anfrage%20RheinWertGutachten"
           className="flex-1 flex flex-col items-center justify-center py-2.5 text-slate-700 font-bold hover:bg-slate-50 transition-all text-xs"
         >
           <Mail className="w-5 h-5 text-gold-500 mb-0.5" />
           <span>Anfragen</span>
-        </button>
+        </a>
       </div>
 
     </div>
