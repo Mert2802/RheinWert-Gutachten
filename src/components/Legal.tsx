@@ -39,10 +39,6 @@ export const Legal: React.FC<LegalProps> = ({ type, onNavigate }) => {
       </section>
 
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 font-sans text-slate-700 text-sm leading-relaxed space-y-8">
-        <div className="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-r-xl select-none text-slate-800 text-xs sm:text-sm">
-          <strong>Wichtiger Hinweis:</strong> Diese Angaben sollten vor Veroeffentlichung rechtlich geprueft und vervollstaendigt werden.
-        </div>
-
         <article className="rounded-xl border border-slate-200 bg-white p-5 sm:p-7 shadow-sm whitespace-pre-line">
           {pageContent}
         </article>
