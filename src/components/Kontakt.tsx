@@ -23,6 +23,8 @@ interface KontaktProps {
 }
 
 const CONTACT_EMAIL = 'info@rheinwert-gutachten.de';
+const FORM_SUBMIT_ENDPOINT = `https://formsubmit.co/${CONTACT_EMAIL}`;
+const FORM_SUBMIT_SUBJECT = 'Neue Anfrage ueber RheinWertGutachten';
 
 const reasonLabels: Record<string, string> = {
   unfallgutachten: 'Unfallgutachten (Haftpflicht)',
@@ -47,8 +49,8 @@ export const Kontakt: React.FC<KontaktProps> = ({ onNavigate }) => {
     preferredContact: 'phone'
   });
 
-  const [submitted, setSubmitted] = useState(false);
   const [activeFaq, setActiveFaq] = useState<string | null>(null);
+  const [submitted, setSubmitted] = useState(false);
 
   const faqs = [
     {
@@ -83,32 +85,7 @@ export const Kontakt: React.FC<KontaktProps> = ({ onNavigate }) => {
     }
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const subject = `Anfrage RheinWertGutachten - ${reasonLabels[form.reason] ?? form.reason}`;
-    const body = [
-      `Name: ${form.name}`,
-      `Telefon: ${form.phone}`,
-      `E-Mail: ${form.email || '-'}`,
-      `Anliegen: ${reasonLabels[form.reason] ?? form.reason}`,
-      `Gewuenschter Kontaktweg: ${preferredContactLabels[form.preferredContact]}`,
-      '',
-      'Nachricht / Schadensbeschreibung:',
-      form.message || '-',
-    ].join('\n');
-
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    setSubmitted(true);
-    // Reset form after submission
-    setForm({
-      name: '',
-      phone: '',
-      email: '',
-      reason: 'unfallgutachten',
-      message: '',
-      preferredContact: 'phone'
-    });
-  };
+  const thankYouUrl = `${window.location.origin}${window.location.pathname}#/kontakt`;
 
   const handleToggleFaq = (id: string) => {
     setActiveFaq(activeFaq === id ? null : id);
@@ -244,7 +221,14 @@ export const Kontakt: React.FC<KontaktProps> = ({ onNavigate }) => {
               </div>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form action={FORM_SUBMIT_ENDPOINT} method="POST" className="space-y-6">
+              <input type="hidden" name="_subject" value={FORM_SUBMIT_SUBJECT} />
+              <input type="hidden" name="_template" value="table" />
+              <input type="hidden" name="_replyto" value={form.email} />
+              <input type="hidden" name="_next" value={thankYouUrl} />
+              <input type="hidden" name="_url" value={thankYouUrl} />
+              <input type="hidden" name="Anliegen" value={reasonLabels[form.reason] ?? form.reason} />
+              <input type="hidden" name="Gewuenschter Kontaktweg" value={preferredContactLabels[form.preferredContact]} />
               <h3 className="font-display font-bold text-xl text-navy-950 border-b border-slate-100 pb-3">
                 Unverbindliche Terminanfrage &amp; Beratung
               </h3>
@@ -256,6 +240,7 @@ export const Kontakt: React.FC<KontaktProps> = ({ onNavigate }) => {
                   <label htmlFor="name-field" className="text-xs font-bold text-slate-500 uppercase tracking-wider">Ihr Name *</label>
                   <input 
                     id="name-field"
+                    name="Name"
                     type="text" 
                     required
                     value={form.name}
@@ -270,6 +255,7 @@ export const Kontakt: React.FC<KontaktProps> = ({ onNavigate }) => {
                   <label htmlFor="phone-field" className="text-xs font-bold text-slate-500 uppercase tracking-wider">Telefonnummer *</label>
                   <input 
                     id="phone-field"
+                    name="Telefon"
                     type="tel" 
                     required
                     value={form.phone}
@@ -288,6 +274,7 @@ export const Kontakt: React.FC<KontaktProps> = ({ onNavigate }) => {
                   <label htmlFor="email-field" className="text-xs font-bold text-slate-500 uppercase tracking-wider">E-Mail Adresse</label>
                   <input 
                     id="email-field"
+                    name="email"
                     type="email" 
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
@@ -301,6 +288,7 @@ export const Kontakt: React.FC<KontaktProps> = ({ onNavigate }) => {
                   <label htmlFor="reason-field" className="text-xs font-bold text-slate-500 uppercase tracking-wider">Ihr Anliegen *</label>
                   <select 
                     id="reason-field"
+                    name="Anliegen Auswahl"
                     value={form.reason}
                     onChange={(e) => setForm({ ...form, reason: e.target.value })}
                     className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:border-navy-500 focus:outline-hidden transition-all bg-slate-50/50 text-slate-700 font-medium"
@@ -319,6 +307,7 @@ export const Kontakt: React.FC<KontaktProps> = ({ onNavigate }) => {
                 <label htmlFor="message-field" className="text-xs font-bold text-slate-500 uppercase tracking-wider">Ihre Nachricht / Schadensbeschreibung</label>
                 <textarea 
                   id="message-field"
+                  name="Nachricht"
                   rows={4}
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
